@@ -15,4 +15,14 @@ public class HomeController {
 	public String openAboutPage() {
 		return "about";
 	}
+
+	@RequestMapping("signIn")
+	public String openSigninPage() {
+		return "signIn";
+	}
+
+	@RequestMapping("signUp")
+	public String openSignupPage() {
+		return "signUP";
+	}
 }

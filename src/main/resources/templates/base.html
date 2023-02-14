@@ -1,11 +1,22 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(home_page,content)">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title,content)">
 <head>
 	<meta charset="UTF-8" />
-	<title th:text="${home_page}"></title>
-	<link rel="stylesheet" th:href="@{/css/homepageCss.css}">
+	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/bootstrap-grid.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/bootstrap-grid.min.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/reboot.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/reboot.min.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrapcss/bootstrap.min.css}">
+
 </head>
-<body th:replace="${content}">
+<body>
+	<div th:replace="~{header::commonHeader}"></div>
 	
+	<div th:replace="${content}"></div>
+
+	<div th:replace="~{footer::commonFooter}"></div>
 </body>
 </html>

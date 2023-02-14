@@ -1,1 +1,65 @@
 @charset "ISO-8859-1";
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    position: static;
+}
+.body-part{
+    height:93vh;
+    width:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image:linear-gradient( 
+    rgba(4, 0, 2, 0.42),rgb(243, 238, 231)),
+    url('../images/call.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.card{
+    opacity:0.5;
+}
+.body-part h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.body-part p{
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0 200px;
+}
+
+#login-card{
+    background: linear-gradient(rgb(238, 237, 240),rgb(229, 225, 223),transparent);
+    /* width: 40%; */
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.footer{
+    background-color: rgb(21, 18, 30);
+    /* display: flex; */
+    
+}
+.footer h1,p{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+.social-media-icon{
+    height: 40px;
+    width: 40px;    
+}
+
+.icons{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    justify-content: space-evenly;
+}
