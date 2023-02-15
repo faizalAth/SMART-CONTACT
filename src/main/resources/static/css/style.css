@@ -22,7 +22,7 @@
     
 }
 .card{
-    opacity:0.5;
+    opacity:0.7;
 }
 .body-part h1{
     font-family: 'Courier New', Courier, monospace;
@@ -31,7 +31,7 @@
 
 .body-part p{
     font-family: 'Courier New', Courier, monospace;
-    padding: 0 200px;
+    padding: 0 20px;
 }
 
 #login-card{

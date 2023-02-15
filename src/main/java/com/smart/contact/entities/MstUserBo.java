@@ -11,20 +11,27 @@ import jakarta.persistence.*;
 public class MstUserBo {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private int user_id;
 	
+	@Column(name = "your_name")
+	private String your_name;
+
 	@Column(name = "email_id")
 	private String email_id;
 	
+	@Column(name = "role")
+	private String role;
+
+	@Column(name = "terms_conditions")
+	private String terms_conditions;
+
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "mobile_number")
-	private String mobile_number;
-	
-	@Column(name = "curent_date")
-	private Date curent_date;
+	@Column(name = "crt_date")
+	private Date crt_date;
 	
 	@Column(name = "status")
 	private int status;
@@ -56,22 +63,6 @@ public class MstUserBo {
 		this.password = password;
 	}
 
-	public String getMobile_number() {
-		return mobile_number;
-	}
-
-	public void setMobile_number(String mobile_number) {
-		this.mobile_number = mobile_number;
-	}
-
-	public Date getCurent_date() {
-		return curent_date;
-	}
-
-	public void setCurent_date(Date curent_date) {
-		this.curent_date = curent_date;
-	}
-
 	public int getStatus() {
 		return status;
 	}
@@ -88,16 +79,44 @@ public class MstUserBo {
 		this.contact = contact;
 	}
 
+	public String getYour_name() {
+		return your_name;
+	}
+
+	public void setYour_name(String your_name) {
+		this.your_name = your_name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getTerms_conditions() {
+		return terms_conditions;
+	}
+
+	public void setTerms_conditions(String terms_conditions) {
+		this.terms_conditions = terms_conditions;
+	}
+
+	public Date getCrt_date() {
+		return crt_date;
+	}
+
+	public void setCrt_date(Date crt_date) {
+		this.crt_date = crt_date;
+	}
+
 	@Override
 	public String toString() {
-		return "MstUserBo{" +
-				"user_id=" + user_id +
-				", email_id='" + email_id + '\'' +
-				", password='" + password + '\'' +
-				", mobile_number='" + mobile_number + '\'' +
-				", curent_date=" + curent_date +
-				", status=" + status +
-				", contact=" + contact +
-				'}';
+		return "MstUserBo [user_id=" + user_id + ", your_name=" + your_name + ", email_id=" + email_id + ", role="
+				+ role + ", terms_conditions=" + terms_conditions + ", password=" + password + ", crt_date=" + crt_date
+				+ ", status=" + status + ", contact=" + contact + "]";
 	}
+
+	
+
 }

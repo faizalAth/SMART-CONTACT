@@ -10,41 +10,66 @@
     <section class="body-part">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="card" id="login-card">
                         <div class="card-header">
+                            <div class="alert" th:if="${message != null}" th:classappend="${message.msg_type}" role="alert">
+                                <p th:text="${message.message}"></p>
+                            </div>
+                            <div class="contsiner text-center">
+                                <img style="height: 50px;width: 80px;" th:src="@{/images/register_image.png}" alt="reg">
+                            </div>
                             <h1 class="text-center">Sign-UP</h1>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form th:action="@{/do_register}" method="post">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Name</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+                                            <label for="nameId">Your Name</label>
+                                            <input type="text" 
+                                                   class="form-control" 
+                                                   id="nameId"
+                                                   name="your_name"
+                                                   th:value="${userData.your_name}"
+                                                   placeholder="Enter Name" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                            <label for="emailid">Email address</label>
+                                            <input type="email" 
+                                            class="form-control" 
+                                            id="emailid"
+                                            name="email_id" 
+                                            th:value="${userData.email_id}"
+                                            aria-describedby="emailHelp"
+                                            placeholder="Enter email" required>
                                             <small id="emailHelp" class="form-text text-muted text-danger">We'll never share your email with anyone else.</small>
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <label for="password_id">Password</label>
+                                            <input type="password" 
+                                            class="form-control" 
+                                            id="password_id"
+                                            name="password"
+                                            required>
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                            <input type="checkbox" 
+                                            class="form-check-input" 
+                                            name="terms_conditions"
+                                            id="terms_conditions_id">
+                                            <label class="form-check-label" for="terms_conditions_id">Agree Terms and Conditiond !!</label>
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center">
-                                        <button type="button" class="btn btn-info">Sign-UP</button>
+                                        <button type="submit" class="btn btn-info">Sign-UP</button>
+                                        <button type="reset" class="btn btn-warning ml-1">Reset</button>
                                     </div>
                                 </div>
                             </form>

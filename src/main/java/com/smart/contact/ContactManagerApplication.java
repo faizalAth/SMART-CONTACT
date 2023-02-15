@@ -10,6 +10,6 @@ public class ContactManagerApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ContactManagerApplication.class, args);
-		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://127.0.0.1:8088/CONTACT-MANAGER");
+		Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler http://127.0.0.1:8088/CONTACT-MANAGER/home");
 	}
 }
