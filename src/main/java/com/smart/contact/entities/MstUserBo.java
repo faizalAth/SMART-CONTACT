@@ -4,7 +4,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.persistence.*;
+import javax.validation.constraints.AssertTrue;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+
 
 @Entity
 @Table(name = "mst_user")
@@ -15,18 +29,22 @@ public class MstUserBo {
 	@Column(name = "user_id")
 	private int user_id;
 	
+	@NotBlank(message = "Please Enter Your Name.")
 	@Column(name = "your_name")
 	private String your_name;
 
-	@Column(name = "email_id")
+	@Email(message = "Please Enter Your Email.")
+	@Column(name = "email_id",unique = true)
 	private String email_id;
 	
 	@Column(name = "role")
 	private String role;
 
+	@AssertTrue(message = "Must Have to Accept Terms & Conditions !")
 	@Column(name = "terms_conditions")
 	private String terms_conditions;
 
+	@NotBlank(message = "Please Enter Your Name.")
 	@Column(name = "password")
 	private String password;
 	

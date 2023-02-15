@@ -45,10 +45,13 @@
 
 .footer{
     background-color: rgb(21, 18, 30);
-    /* display: flex; */
+}
+.footer .row{
+    display: flex;
+    flex-direction: row;
     
 }
-.footer h1,p{
+.footer h3,p{
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
 }

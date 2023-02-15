@@ -22,17 +22,21 @@
                             <h1 class="text-center">Sign-UP</h1>
                         </div>
                         <div class="card-body">
-                            <form th:action="@{/do_register}" method="post">
+                            <form novalidate th:action="@{/do_register}" method="post" modelAttribute="mstUserBo" th:object="${mstUserBo}">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="nameId">Your Name</label>
                                             <input type="text" 
-                                                   class="form-control" 
+                                                   class="form-control"
                                                    id="nameId"
                                                    name="your_name"
                                                    th:value="${userData.your_name}"
+                                                   th:classappend="${#fields.hasErrors('your_name') ? 'is-invalid' : ''}"
                                                    placeholder="Enter Name" required>
+                                            <div class="invalid-feedback" th:each="e : ${#fields.errors('your_name')}" th:text="${e}">
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">

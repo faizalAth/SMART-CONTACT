@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.smart.contact.dao.HomeDaoImpl;
 import com.smart.contact.entities.MstUserBo;
 import com.smart.contact.helper.Helper;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class HomeController {
@@ -35,16 +38,16 @@ HomeDaoImpl homeDao;
 	}
 
 	@RequestMapping("signUp")
-	public String openSignupPage(@ModelAttribute MstUserBo user,Model model) {
+	public String openSignupPage(@ModelAttribute(value = "mstUserBo") MstUserBo user,Model model) {
 		model.addAttribute("userData", user);
 		return "signUP";
 	}
 
 	@PostMapping("do_register")
-	public String registerUser(@ModelAttribute MstUserBo user,Model model) {
+	public String registerUser(@Valid @ModelAttribute("mstUserBo") MstUserBo user,BindingResult results,Model model) {
 		try {
-			if(user.getTerms_conditions() == null){
-				model.addAttribute("userData", user);
+			if(results.hasErrors()){
+				System.out.println(results.toString());
 				throw new Exception("Please Accept Terms & Conditions !!");
 			}else{
 				user.setRole("USER_ROLE"); 
@@ -53,11 +56,11 @@ HomeDaoImpl homeDao;
 				homeDao.registerUser(user);
 				
 				model.addAttribute("message",new Helper("User Registered Successfully !!","alert-info"));
-				// model.addAttribute("message_type","alert-info");
 				model.addAttribute("userData", new MstUserBo());
 			}
 
 		} catch (Exception e) {
+			model.addAttribute("userData", user);
 			e.printStackTrace();
 			model.addAttribute("message",new Helper(e.getMessage(),"alert-danger"));
 		}
