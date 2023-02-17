@@ -3,6 +3,8 @@ package com.smart.contact.controller;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.smart.contact.dao.HomeDaoImpl;
+import com.smart.contact.dao.UserDao;
 import com.smart.contact.entities.MstUserBo;
 import com.smart.contact.helper.Helper;
 
@@ -19,9 +21,12 @@ import jakarta.validation.Valid;
 @Controller
 public class HomeController {
 
-@Autowired
-HomeDaoImpl homeDao;
+	@Autowired
+	UserDao userDao;
 
+	@Autowired
+	BCryptPasswordEncoder PasswordEncoder;
+	
 	@RequestMapping("home")
 	public String openHomePage() {
 		return "homePage";
@@ -50,10 +55,11 @@ HomeDaoImpl homeDao;
 				System.out.println(results.toString());
 				throw new Exception("Please Accept Terms & Conditions !!");
 			}else{
-				user.setRole("USER_ROLE"); 
+				user.setRole("ROLE_USER"); 
 				user.setStatus(1);
 				user.setCrt_date(new Date());
-				homeDao.registerUser(user);
+				user.setPassword(PasswordEncoder.encode(user.getPassword()));
+				userDao.registerUser(user);
 				
 				model.addAttribute("message",new Helper("User Registered Successfully !!","alert-info"));
 				model.addAttribute("userData", new MstUserBo());

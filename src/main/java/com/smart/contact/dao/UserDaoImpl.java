@@ -7,7 +7,7 @@ import com.smart.contact.entities.MstUserBo;
 import com.smart.contact.repository.UserRepo;
 
 @Component
-public class HomeDaoImpl implements HomeDao{
+public class UserDaoImpl implements UserDao{
 
     @Autowired UserRepo userRepo;
 
