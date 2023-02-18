@@ -22,7 +22,7 @@
                             <h1 class="text-center">Sign-UP</h1>
                         </div>
                         <div class="card-body">
-                            <form novalidate th:action="@{/do_register}" method="post" modelAttribute="mstUserBo" th:object="${mstUserBo}">
+                            <form novalidate th:action="@{/do_register}" method="post" th:object="${mstUserBo}">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
@@ -48,8 +48,12 @@
                                             name="email_id" 
                                             th:value="${userData.email_id}"
                                             aria-describedby="emailHelp"
+                                            th:classappend="${#fields.hasErrors('email_id') ? 'is-invalid' : ''}"
                                             placeholder="Enter email" required>
                                             <small id="emailHelp" class="form-text text-muted text-danger">We'll never share your email with anyone else.</small>
+                                            <div class="invalid-feedback" th:each="e : ${#fields.errors('email_id')}" th:text="${e}">
+                                                
+                                            </div>
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -59,7 +63,11 @@
                                             class="form-control" 
                                             id="password_id"
                                             name="password"
+                                            th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
                                             required>
+                                            <div class="invalid-feedback" th:each="e : ${#fields.errors('password')}" th:text="${e}">
+                                                
+                                            </div>
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">

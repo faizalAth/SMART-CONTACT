@@ -19,22 +19,28 @@
                             <h1 class="text-center">Sign-IN</h1>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form class="form" id="login-form" th:action="@{/checkUserLogin}" action="#" method="post">
+                            <div th:if="${param.error}" class="alert alert-danger">
+                                Invalid username and Password
+                            </div>
+                            <div th:if="${param.logout}" class="alert alert-success">
+                                You have been Successfully Loged Out!
+                            </div>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                            <label for="username">Email address</label>
+                                            <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" placeholder="Enter email">
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                           </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
-                                        <button type="button" class="btn btn-info">Sign-IN</button>
+                                        <button type="submit" class="btn btn-info">Sign-IN</button>
                                     </div>
                                 </div>
                             </form>

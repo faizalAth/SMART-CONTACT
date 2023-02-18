@@ -33,7 +33,7 @@ public class MstUserBo {
 	@Column(name = "your_name")
 	private String your_name;
 
-	@Email(message = "Please Enter Your Email.")
+	@NotBlank(message = "Please Enter Your Email.")
 	@Column(name = "email_id",unique = true)
 	private String email_id;
 	
@@ -44,7 +44,7 @@ public class MstUserBo {
 	@Column(name = "terms_conditions")
 	private String terms_conditions;
 
-	@NotBlank(message = "Please Enter Your Name.")
+	@NotBlank(message = "Please Enter Your Password.")
 	@Column(name = "password")
 	private String password;
 	

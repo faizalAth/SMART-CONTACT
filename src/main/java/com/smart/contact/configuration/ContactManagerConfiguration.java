@@ -32,8 +32,15 @@ public class ContactManagerConfiguration {
 	public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
 		security.authenticationProvider(daoAuthenticationProvider());
 		
-		security.authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER").requestMatchers("/admin/**").hasRole("ADMIN")
-										.requestMatchers("/**").permitAll().and().formLogin().and().csrf().disable();
+		security.authorizeHttpRequests().requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
+		
+										.requestMatchers("/admin/**").hasRole("ADMIN")
+										
+										.requestMatchers("/**").permitAll()
+										
+										.and().formLogin().loginPage("/signIn").loginProcessingUrl("/checkUserLogin").defaultSuccessUrl("/home")//.failureUrl("/signIn")
+										
+										.and().csrf().disable();
 		
 		return security.build();
 	}

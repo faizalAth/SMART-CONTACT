@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.smart.contact.dao.UserDao;
 import com.smart.contact.entities.MstUserBo;
@@ -43,13 +45,13 @@ public class HomeController {
 	}
 
 	@RequestMapping("signUp")
-	public String openSignupPage(@ModelAttribute(value = "mstUserBo") MstUserBo user,Model model) {
+	public ModelAndView openSignupPage(@ModelAttribute MstUserBo user,Model model) {
 		model.addAttribute("userData", user);
-		return "signUP";
+		return new ModelAndView("signUP");
 	}
 
 	@PostMapping("do_register")
-	public String registerUser(@Valid @ModelAttribute("mstUserBo") MstUserBo user,BindingResult results,Model model) {
+	public ModelAndView registerUser(@Valid @ModelAttribute MstUserBo user,BindingResult results,Model model) {
 		try {
 			if(results.hasErrors()){
 				System.out.println(results.toString());
@@ -61,8 +63,9 @@ public class HomeController {
 				user.setPassword(PasswordEncoder.encode(user.getPassword()));
 				userDao.registerUser(user);
 				
-				model.addAttribute("message",new Helper("User Registered Successfully !!","alert-info"));
+				model.addAttribute("message",new Helper("Registered Successfully !!","alert-info"));
 				model.addAttribute("userData", new MstUserBo());
+//				return new ModelAndView("redirect:/signUp","",model);
 			}
 
 		} catch (Exception e) {
@@ -70,6 +73,7 @@ public class HomeController {
 			e.printStackTrace();
 			model.addAttribute("message",new Helper(e.getMessage(),"alert-danger"));
 		}
-		return "signUP";
+		return new ModelAndView("signUp");
 	}
+	
 }
