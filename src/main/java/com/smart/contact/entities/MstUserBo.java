@@ -25,7 +25,6 @@ import jakarta.validation.constraints.NotBlank;
 public class MstUserBo {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private int user_id;
 	

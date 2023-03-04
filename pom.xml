@@ -71,7 +71,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-<!--		<finalName>Contact Manager exe</finalName>-->
+		<finalName>Contact Manager exe</finalName>
 	</build>
 
 </project>

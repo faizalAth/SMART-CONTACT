@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:insert="~{user/afterLoginBase::afterLoginlayout('Dash-Board',~{::section})}">
 <head>
-<meta charset="ISO-8859-1">
-<title>Dashboard</title>
+	<meta charset="UTF-8" />
+	<title></title>
 </head>
 <body>
-		<h1>User Dashboard</h1>
-		<h4>Welcome To Your Dashboard</h4>
+	<section class="" style="height:100vh;"><!-- body-part -->
+		<h1>Welcome <span th:text="${user.your_name}"></span></h1>
+		<h3>This is Your Private Dash-Board</h3>
+	</section>
 </body>
 </html>

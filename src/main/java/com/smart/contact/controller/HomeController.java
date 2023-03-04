@@ -1,5 +1,6 @@
 package com.smart.contact.controller;
 
+import java.security.Principal;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.smart.contact.dao.UserDao;
 import com.smart.contact.entities.MstUserBo;
 import com.smart.contact.helper.Helper;
+import com.smart.contact.repository.UserRepo;
 
 import jakarta.validation.Valid;
 
@@ -29,9 +30,31 @@ public class HomeController {
 	@Autowired
 	BCryptPasswordEncoder PasswordEncoder;
 	
+	@Autowired UserRepo userRepo;
+	
+	@ModelAttribute
+	public void beforeHandler(Model model,Principal principal) {
+		if(principal != null) {
+			MstUserBo user= userRepo.getUserByUserName(principal.getName());
+			model.addAttribute("user",user);
+		}
+	}
+	
 	@RequestMapping("home")
-	public String openHomePage() {
-		return "homePage";
+	public String openHomePage(Model model,Principal principal) {
+		if(principal != null) {
+			MstUserBo user = (MstUserBo) model.getAttribute("user");
+			if(user != null && user.getRole().equals("ROLE_USER")) {
+				return "redirect:/user/index";
+			}else if(user != null && user.getRole().equals("ROLE_ADMIN")) {
+				return "redirect:/admin/index";
+			}else {
+				return "homePage";
+			}
+		}else {
+			return "homePage";
+		}
+		
 	}
 
 	@RequestMapping("about")

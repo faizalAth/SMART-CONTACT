@@ -33,7 +33,7 @@ public class ContactManagerConfiguration {
 		security.authenticationProvider(daoAuthenticationProvider());
 		
 		security.authorizeHttpRequests().requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
-		
+										
 										.requestMatchers("/admin/**").hasRole("ADMIN")
 										
 										.requestMatchers("/**").permitAll()

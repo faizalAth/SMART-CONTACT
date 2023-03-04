@@ -8,12 +8,12 @@ import jakarta.persistence.*;
 public class MstContactBo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int cid;
     private String name;
     private String nick_name;
     private String email;
     private String contact_number;
+    private String othr_contact_number;
     private String description;
 
     @ManyToOne()
@@ -75,28 +75,37 @@ public class MstContactBo {
 		this.user_id = user_id;
 	}
 
-	@Override
-    public String toString() {
-        return "MstContactBo{" +
-                "cid=" + cid +
-                ", name='" + name + '\'' +
-                ", nick_name='" + nick_name + '\'' +
-                ", email='" + email + '\'' +
-                ", contact_number='" + contact_number + '\'' +
-                ", desc='" + description + '\'' +
-                '}';
-    }
+	public String getOthr_contact_number() {
+		return othr_contact_number;
+	}
 
-    public MstContactBo() {
+	public void setOthr_contact_number(String othr_contact_number) {
+		this.othr_contact_number = othr_contact_number;
+	}
+
+	
+
+    @Override
+	public String toString() {
+		return "MstContactBo [cid=" + cid + ", name=" + name + ", nick_name=" + nick_name + ", email=" + email
+				+ ", contact_number=" + contact_number + ", othr_contact_number=" + othr_contact_number
+				+ ", description=" + description + ", user_id=" + user_id + "]";
+	}
+
+	public MstContactBo() {
         super();
     }
 
-    public MstContactBo(int cid, String name, String nick_name, String email, String contact_number, String description) {
-        this.cid = cid;
-        this.name = name;
-        this.nick_name = nick_name;
-        this.email = email;
-        this.contact_number = contact_number;
-        this.description = description;
-    }
+	public MstContactBo(String name, String nick_name, String email, String contact_number,
+			String othr_contact_number, String description) {
+		super();
+		this.name = name;
+		this.nick_name = nick_name;
+		this.email = email;
+		this.contact_number = contact_number;
+		this.othr_contact_number = othr_contact_number;
+		this.description = description;
+	}
+
+    
 }
